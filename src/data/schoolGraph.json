@@ -1,0 +1,2161 @@
+
+{
+  "meta": {
+    "description": "School navigation graph. Node ids are the numbers from the node sheet. Edges are undirected.",
+    "timeUnit": "seconds",
+    "edgeFields": {
+      "timeSeconds": "Measured walking time (average if timed more than once); null if not yet timed",
+      "measured": "true if a time was recorded",
+      "inConnectionList": "true if this pair appears in the node sheet's connection lists"
+    }
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Top Red",
+      "connections": [
+        2,
+        4,
+        15
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Middle Red",
+      "connections": [
+        1,
+        3,
+        5,
+        14,
+        64
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Bottom Red",
+      "connections": [
+        3,
+        24,
+        28
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Top Yellow",
+      "connections": [
+        5,
+        15
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Middle Yellow",
+      "connections": [
+        4,
+        6,
+        73
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Bottom Yellow",
+      "connections": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Top Blue",
+      "connections": [
+        8,
+        75
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Middle Blue",
+      "connections": [
+        7,
+        9,
+        22
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Bottom Blue",
+      "connections": [
+        8,
+        23,
+        27
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Top Green",
+      "connections": [
+        11,
+        77
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Middle Green",
+      "connections": [
+        10,
+        12,
+        22
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Bottom Green",
+      "connections": [
+        11,
+        79,
+        27,
+        21
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Learning Commons",
+      "connections": [
+        49
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Bottom O",
+      "connections": [
+        15,
+        55
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Top O",
+      "connections": [
+        14,
+        16,
+        1,
+        48
+      ]
+    },
+    {
+      "id": 16,
+      "name": "HS Print Room",
+      "connections": [
+        15,
+        17,
+        20
+      ]
+    },
+    {
+      "id": 17,
+      "name": "OSA Corner",
+      "connections": [
+        18,
+        16,
+        76
+      ]
+    },
+    {
+      "id": 18,
+      "name": "English Corner",
+      "connections": [
+        17
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Social Studies Corner",
+      "connections": [
+        18,
+        20
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Languages Corner",
+      "connections": [
+        16,
+        19
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Nurse's Office",
+      "connections": [
+        27
+      ]
+    },
+    {
+      "id": 22,
+      "name": "MS Reception / Middle Teal",
+      "connections": [
+        75
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Theatre Annex",
+      "connections": [
+        6
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Theatre Foyer / Black Chairs",
+      "connections": [
+        21
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Main Entrance",
+      "connections": [
+        65
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Loudon Entrance",
+      "connections": [
+        44
+      ]
+    },
+    {
+      "id": 27,
+      "name": "LS Reception",
+      "connections": [
+        21,
+        26,
+        59
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Commons / Cafeteria",
+      "connections": [
+        3
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Swim Pool",
+      "connections": [
+        46,
+        33,
+        32
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Farmer Gym",
+      "connections": [
+        31,
+        60,
+        35
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Blue Gym",
+      "connections": [
+        30,
+        62
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Dance Room (MPR3)",
+      "connections": [
+        29,
+        33
+      ]
+    },
+    {
+      "id": 33,
+      "name": "The Actual Gym",
+      "connections": [
+        29,
+        32
+      ]
+    },
+    {
+      "id": 34,
+      "name": "MPR2 Choir Room",
+      "connections": [
+        36
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Gym Foyer",
+      "connections": [
+        61,
+        30
+      ]
+    },
+    {
+      "id": 36,
+      "name": "LS Gym (MPR1)",
+      "connections": [
+        67,
+        34
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Art 0",
+      "connections": [
+        38
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Art 1",
+      "connections": [
+        37,
+        39,
+        44
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Art 2",
+      "connections": [
+        38,
+        40
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Art 3",
+      "connections": [
+        39
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Correen Hester Courtyard",
+      "connections": []
+    },
+    {
+      "id": 42,
+      "name": "Matt Horvat's House",
+      "connections": [
+        44
+      ]
+    },
+    {
+      "id": 43,
+      "name": "LS Playground",
+      "connections": [
+        59
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Waverly Playground (Eagle)",
+      "connections": [
+        42,
+        26
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Changing Rooms Basketball",
+      "connections": [
+        62
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Changing Rooms Swim",
+      "connections": []
+    },
+    {
+      "id": 47,
+      "name": "W301",
+      "connections": [
+        48,
+        1,
+        72
+      ]
+    },
+    {
+      "id": 48,
+      "name": "W302",
+      "connections": [
+        15,
+        1,
+        4,
+        47
+      ]
+    },
+    {
+      "id": 49,
+      "name": "W303",
+      "connections": [
+        48,
+        50,
+        4
+      ]
+    },
+    {
+      "id": 50,
+      "name": "W304",
+      "connections": [
+        49,
+        13
+      ]
+    },
+    {
+      "id": 51,
+      "name": "W306",
+      "connections": [
+        13,
+        52
+      ]
+    },
+    {
+      "id": 52,
+      "name": "W307",
+      "connections": [
+        51,
+        53
+      ]
+    },
+    {
+      "id": 53,
+      "name": "W308",
+      "connections": [
+        52,
+        54
+      ]
+    },
+    {
+      "id": 54,
+      "name": "W309",
+      "connections": [
+        72,
+        53
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Mill",
+      "connections": [
+        15,
+        56,
+        58
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Grade 5&6 Science",
+      "connections": [
+        57
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Grade 7&8 Science",
+      "connections": [
+        56
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Robotics Room",
+      "connections": [
+        55
+      ]
+    },
+    {
+      "id": 59,
+      "name": "LS Library",
+      "connections": [
+        27,
+        67,
+        43
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Joe Harris's Office",
+      "connections": [
+        61
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Athletics Office (Pranay & Erickson)",
+      "connections": [
+        35,
+        60
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Jenny",
+      "connections": [
+        46,
+        32,
+        45,
+        74
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Boardroom Library",
+      "connections": [
+        73
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Boardroom Red",
+      "connections": [
+        2,
+        71
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Admissions Office",
+      "connections": [
+        66,
+        25,
+        73
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Transport Office",
+      "connections": [
+        65,
+        25
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Grade 1",
+      "connections": [
+        59,
+        36
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Grade 2",
+      "connections": [
+        69
+      ]
+    },
+    {
+      "id": 69,
+      "name": "K1 and K2",
+      "connections": [
+        68,
+        78
+      ]
+    },
+    {
+      "id": 70,
+      "name": "HR",
+      "connections": [
+        71
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Advancement",
+      "connections": [
+        64,
+        70
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Dr. Moore's Office",
+      "connections": [
+        47,
+        54
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Mellon Library (Mr. Reed's Desk)",
+      "connections": [
+        63,
+        5
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Aquatics Office",
+      "connections": [
+        62,
+        31
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Top Teal",
+      "connections": [
+        22,
+        7,
+        10
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Senior Snack Basket",
+      "connections": [
+        17
+      ]
+    },
+    {
+      "id": 77,
+      "name": "High Street",
+      "connections": [
+        25
+      ]
+    },
+    {
+      "id": 78,
+      "name": "LS Mini Playground (Marlborough)",
+      "connections": [
+        59,
+        69
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Bookstore",
+      "connections": [
+        34,
+        21,
+        12
+      ]
+    },
+    {
+      "id": 80,
+      "name": "SLD Pod",
+      "connections": [
+        17,
+        18
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Test Office",
+      "connections": []
+    },
+    {
+      "id": 82,
+      "name": "Main HS Locker Hallway",
+      "connections": []
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2,
+      "timeSeconds": 12.5,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 1,
+      "to": 4,
+      "timeSeconds": 15.3,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 1,
+      "to": 15,
+      "timeSeconds": 15.3,
+      "measured": true,
+      "inConnectionList": true,
+      "allTimes": [
+        13.6,
+        17
+      ],
+      "notes": [
+        "Timed 2 times; timeSeconds is the average"
+      ]
+    },
+    {
+      "from": 1,
+      "to": 47,
+      "timeSeconds": 6.0,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 1,
+      "to": 48,
+      "timeSeconds": 8.5,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 2,
+      "to": 5,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 2,
+      "to": 14,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 2,
+      "to": 24,
+      "timeSeconds": 9.3,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 2,
+      "to": 64,
+      "timeSeconds": 4.3,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 3,
+      "to": 24,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 3,
+      "to": 28,
+      "timeSeconds": 20.3,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "timeSeconds": 12.5,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 4,
+      "to": 6,
+      "timeSeconds": 12.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 4,
+      "to": 15,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 4,
+      "to": 48,
+      "timeSeconds": 7.0,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 4,
+      "to": 49,
+      "timeSeconds": 7.3,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 4,
+      "to": 73,
+      "timeSeconds": 3.6,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 5,
+      "to": 73,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 6,
+      "to": 23,
+      "timeSeconds": 11.2,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "timeSeconds": 13.7,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 7,
+      "to": 9,
+      "timeSeconds": 13.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 7,
+      "to": 53,
+      "timeSeconds": 6.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 7,
+      "to": 75,
+      "timeSeconds": 8.9,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "timeSeconds": 12.5,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 8,
+      "to": 21,
+      "timeSeconds": 6.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 8,
+      "to": 22,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 8,
+      "to": 27,
+      "timeSeconds": 13.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 9,
+      "to": 11,
+      "timeSeconds": 13.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 9,
+      "to": 23,
+      "timeSeconds": 56.0,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 9,
+      "to": 27,
+      "timeSeconds": 15.5,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 9,
+      "to": 53,
+      "timeSeconds": 8.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 9,
+      "to": 75,
+      "timeSeconds": 9.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 10,
+      "to": 12,
+      "timeSeconds": 13.1,
+      "measured": true,
+      "inConnectionList": false,
+      "allTimes": [
+        13.7,
+        12.5
+      ],
+      "notes": [
+        "Source row ran into the next row ('12.511 21 4.9'); split as 10-12 12.5 and 11-21 4.9",
+        "Timed 2 times; timeSeconds is the average"
+      ]
+    },
+    {
+      "from": 10,
+      "to": 22,
+      "timeSeconds": 8.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 10,
+      "to": 75,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 10,
+      "to": 77,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 11,
+      "to": 21,
+      "timeSeconds": 4.5,
+      "measured": true,
+      "inConnectionList": false,
+      "allTimes": [
+        4.9,
+        4.1
+      ],
+      "notes": [
+        "Split from merged row",
+        "Timed 2 times; timeSeconds is the average"
+      ]
+    },
+    {
+      "from": 11,
+      "to": 22,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 11,
+      "to": 27,
+      "timeSeconds": 14.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "timeSeconds": 14.3,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 12,
+      "to": 21,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 12,
+      "to": 27,
+      "timeSeconds": 16.8,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 12,
+      "to": 49,
+      "timeSeconds": 13.4,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 12,
+      "to": 50,
+      "timeSeconds": 9.8,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 12,
+      "to": 51,
+      "timeSeconds": 2.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 12,
+      "to": 79,
+      "timeSeconds": 23.3,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 13,
+      "to": 16,
+      "timeSeconds": 9.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 13,
+      "to": 48,
+      "timeSeconds": 12.3,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 13,
+      "to": 49,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 13,
+      "to": 50,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 13,
+      "to": 51,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 13,
+      "to": 55,
+      "timeSeconds": 18.1,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 14,
+      "to": 15,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 14,
+      "to": 55,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 14,
+      "to": 82,
+      "timeSeconds": 1.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 15,
+      "to": 16,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 15,
+      "to": 48,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 15,
+      "to": 55,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 15,
+      "to": 76,
+      "timeSeconds": 5.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 15,
+      "to": 80,
+      "timeSeconds": 7.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 16,
+      "to": 17,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 16,
+      "to": 20,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 16,
+      "to": 80,
+      "timeSeconds": 11.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 17,
+      "to": 18,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 17,
+      "to": 20,
+      "timeSeconds": 12.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 17,
+      "to": 26,
+      "timeSeconds": 14.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 17,
+      "to": 27,
+      "timeSeconds": 14.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 17,
+      "to": 76,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 17,
+      "to": 80,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 18,
+      "to": 19,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 18,
+      "to": 22,
+      "timeSeconds": 7.4,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 18,
+      "to": 75,
+      "timeSeconds": 13.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 18,
+      "to": 80,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 19,
+      "to": 20,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 19,
+      "to": 23,
+      "timeSeconds": 13.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 19,
+      "to": 66,
+      "timeSeconds": 6.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 20,
+      "to": 65,
+      "timeSeconds": 3.0,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Used blue gym main entrance but side entrance would be shorter"
+      ]
+    },
+    {
+      "from": 21,
+      "to": 24,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 21,
+      "to": 27,
+      "timeSeconds": 18.0,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 21,
+      "to": 32,
+      "timeSeconds": 5.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 21,
+      "to": 59,
+      "timeSeconds": 22.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 21,
+      "to": 79,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 22,
+      "to": 33,
+      "timeSeconds": 5.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 22,
+      "to": 75,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 24,
+      "to": 46,
+      "timeSeconds": 1.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 25,
+      "to": 31,
+      "timeSeconds": 10.6,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 25,
+      "to": 60,
+      "timeSeconds": 13.9,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Source row ran into the next row ('13.926 62 20.2'); split as 25-60 13.9 and 26-62 20.2"
+      ]
+    },
+    {
+      "from": 25,
+      "to": 65,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 25,
+      "to": 66,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 25,
+      "to": 77,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 26,
+      "to": 27,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 26,
+      "to": 44,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 26,
+      "to": 62,
+      "timeSeconds": 20.2,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Split from merged row"
+      ]
+    },
+    {
+      "from": 27,
+      "to": 33,
+      "timeSeconds": 1.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 27,
+      "to": 59,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 29,
+      "to": 32,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 29,
+      "to": 33,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 29,
+      "to": 35,
+      "timeSeconds": 7.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 29,
+      "to": 46,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 29,
+      "to": 61,
+      "timeSeconds": 6.4,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 29,
+      "to": 79,
+      "timeSeconds": 23.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 30,
+      "to": 31,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 30,
+      "to": 35,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 30,
+      "to": 36,
+      "timeSeconds": 6.3,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 30,
+      "to": 38,
+      "timeSeconds": 8.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 30,
+      "to": 39,
+      "timeSeconds": 8.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 30,
+      "to": 60,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 31,
+      "to": 40,
+      "timeSeconds": 8.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 31,
+      "to": 44,
+      "timeSeconds": 15.6,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 31,
+      "to": 62,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 31,
+      "to": 74,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 32,
+      "to": 33,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 32,
+      "to": 62,
+      "timeSeconds": 8.2,
+      "measured": true,
+      "inConnectionList": true
+    },
+    {
+      "from": 32,
+      "to": 72,
+      "timeSeconds": 10.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 34,
+      "to": 36,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 34,
+      "to": 48,
+      "timeSeconds": 9.1,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 34,
+      "to": 49,
+      "timeSeconds": 10.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 34,
+      "to": 79,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 35,
+      "to": 50,
+      "timeSeconds": 7.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 35,
+      "to": 61,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 36,
+      "to": 52,
+      "timeSeconds": 8.1,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 36,
+      "to": 67,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 37,
+      "to": 38,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 37,
+      "to": 53,
+      "timeSeconds": 9.4,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 38,
+      "to": 39,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 38,
+      "to": 44,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 38,
+      "to": 54,
+      "timeSeconds": 9.4,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 38,
+      "to": 72,
+      "timeSeconds": 9.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 39,
+      "to": 40,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 39,
+      "to": 57,
+      "timeSeconds": 10.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 42,
+      "to": 44,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 43,
+      "to": 56,
+      "timeSeconds": 5.8,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 43,
+      "to": 59,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 45,
+      "to": 58,
+      "timeSeconds": 7.1,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 45,
+      "to": 62,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 46,
+      "to": 57,
+      "timeSeconds": 5.6,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 46,
+      "to": 62,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 47,
+      "to": 48,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 47,
+      "to": 59,
+      "timeSeconds": 8.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 47,
+      "to": 72,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 47,
+      "to": 78,
+      "timeSeconds": 11.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 48,
+      "to": 49,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 48,
+      "to": 67,
+      "timeSeconds": 13.6,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 49,
+      "to": 50,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 49,
+      "to": 61,
+      "timeSeconds": 3.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 51,
+      "to": 52,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 51,
+      "to": 62,
+      "timeSeconds": 10.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 52,
+      "to": 62,
+      "timeSeconds": 4.3,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Used blue gym main entrance but side entrance would be shorter"
+      ]
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 53,
+      "to": 66,
+      "timeSeconds": 11.3,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Source row ran into the next row ('11.354 73 16.4'); split as 53-66 11.3 and 54-73 16.4"
+      ]
+    },
+    {
+      "from": 53,
+      "to": 71,
+      "timeSeconds": 3.1,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 54,
+      "to": 72,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 54,
+      "to": 73,
+      "timeSeconds": 16.4,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Split from merged row"
+      ]
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 55,
+      "to": 58,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 55,
+      "to": 67,
+      "timeSeconds": 12.3,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 55,
+      "to": 69,
+      "timeSeconds": 19.5,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 55,
+      "to": 71,
+      "timeSeconds": 6.4,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 56,
+      "to": 57,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 56,
+      "to": 74,
+      "timeSeconds": 1.0,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Source row read '56 741' with no spaces; interpreted as 56-74 1s - please confirm"
+      ]
+    },
+    {
+      "from": 59,
+      "to": 67,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 59,
+      "to": 74,
+      "timeSeconds": 20.2,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 59,
+      "to": 75,
+      "timeSeconds": 6.0,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Source row read '59 756' with no spaces; interpreted as 59-75 6s - please confirm"
+      ]
+    },
+    {
+      "from": 59,
+      "to": 78,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 60,
+      "to": 61,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 60,
+      "to": 78,
+      "timeSeconds": 10.6,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 62,
+      "to": 74,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 62,
+      "to": 79,
+      "timeSeconds": 12.7,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 63,
+      "to": 73,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 64,
+      "to": 71,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 64,
+      "to": 79,
+      "timeSeconds": 16.9,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 65,
+      "to": 66,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 65,
+      "to": 73,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 65,
+      "to": 79,
+      "timeSeconds": 14.8,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 65,
+      "to": 81,
+      "timeSeconds": 15.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 68,
+      "to": 69,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 68,
+      "to": 81,
+      "timeSeconds": 14.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 69,
+      "to": 78,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 69,
+      "to": 82,
+      "timeSeconds": 7.0,
+      "measured": true,
+      "inConnectionList": false,
+      "notes": [
+        "Source row read '69 827' with no spaces; interpreted as 69-82 7s - please confirm"
+      ]
+    },
+    {
+      "from": 70,
+      "to": 71,
+      "timeSeconds": null,
+      "measured": false,
+      "inConnectionList": true
+    },
+    {
+      "from": 70,
+      "to": 82,
+      "timeSeconds": 13.0,
+      "measured": true,
+      "inConnectionList": false
+    },
+    {
+      "from": 81,
+      "to": 82,
+      "timeSeconds": 12.0,
+      "measured": true,
+      "inConnectionList": false
+    }
+  ],
+  "timingAssignments": [
+    {
+      "person": "Olivia",
+      "area": "LS + Red Hallway",
+      "nodes": [
+        27,
+        21,
+        67,
+        68,
+        69,
+        59,
+        34,
+        36,
+        43,
+        28,
+        9,
+        12,
+        24,
+        2,
+        64,
+        73,
+        70,
+        71,
+        78,
+        79
+      ]
+    },
+    {
+      "person": "Shelbe",
+      "area": "Gyms, Playground, Art, Gym Foyer",
+      "nodes": [
+        30,
+        31,
+        32,
+        33,
+        35,
+        29,
+        37,
+        38,
+        29,
+        40,
+        41,
+        42,
+        44,
+        45,
+        46,
+        60,
+        61,
+        62,
+        74
+      ],
+      "note": "29 appears twice; the second may have been meant as 39 (Art 2)"
+    },
+    {
+      "person": "Augi",
+      "area": "Languages, English, Social Studies, Math, Top O",
+      "nodes": [
+        1,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        76,
+        81,
+        82,
+        80
+      ]
+    },
+    {
+      "person": "Alexi",
+      "area": "Library, entrances, admissions offices",
+      "nodes": [],
+      "note": "No node numbers given"
+    },
+    {
+      "person": "Ziad",
+      "area": "Bottom Central Area, Waverly Entrance, MS Sciences",
+      "nodes": [
+        3,
+        5,
+        9,
+        12,
+        21,
+        23,
+        24,
+        28,
+        60,
+        61,
+        55,
+        56,
+        57,
+        58,
+        66,
+        44,
+        65
+      ]
+    },
+    {
+      "person": "Robby",
+      "area": "HS Science + Middle School",
+      "nodes": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        22,
+        75
+      ]
+    }
+  ],
+  "dataIssues": [
+    "Timed self-loop 3-3 (12.5s) - node connected to itself, excluded from edges",
+    "Edge 1-15 timed 2 times: [13.6, 17] (averaged)",
+    "Edge 10-12 timed 2 times: [13.7, 12.5] (averaged)",
+    "Edge 11-21 timed 2 times: [4.9, 4.1] (averaged)",
+    "Node 3 (Bottom Red) lists itself as a connection",
+    "Node 41 (Correen Hester Courtyard) has no connections at all",
+    "85 timed edges are not in the node connection list (check numbering): 2-24, 4-6, 4-73, 7-9, 7-53, 8-21, 8-27, 9-11, 9-53, 9-75, 10-12, 10-22, 11-21, 11-27, 12-13, 12-49, 12-50, 12-51, 13-16, 13-48, 13-55, 14-82, 15-76, 15-80, 16-80, 17-20, 17-26, 17-27, 18-22, 18-75, 19-23, 19-66, 20-65, 21-32, 21-59, 22-33, 24-46, 25-31, 25-60, 26-62, 27-33, 29-35, 29-61, 29-79, 30-36, 30-38, 30-39, 31-40, 31-44, 32-72, 34-48, 34-49, 35-50, 36-52, 37-53, 38-54, 38-72, 39-57, 43-56, 45-58, 46-57, 47-59, 47-78, 48-67, 49-61, 51-62, 52-62, 53-66, 53-71, 54-73, 55-67, 55-69, 55-71, 56-74, 59-74, 59-75, 60-78, 62-79, 64-79, 65-79, 65-81, 68-81, 69-82, 70-82, 81-82",
+    "82 listed connections have no time yet: 2-3, 2-5, 2-14, 3-24, 4-15, 5-6, 5-73, 8-22, 10-11, 10-75, 10-77, 11-12, 11-22, 12-21, 13-49, 13-50, 13-51, 14-15, 14-55, 15-16, 15-48, 15-55, 16-17, 16-20, 17-18, 17-76, 17-80, 18-19, 18-80, 19-20, 21-24, 21-79, 22-75, 25-65, 25-66, 25-77, 26-27, 26-44, 27-59, 29-32, 29-33, 29-46, 30-31, 30-35, 30-60, 31-62, 31-74, 32-33, 34-36, 34-79, 35-61, 36-67, 37-38, 38-39, 38-44, 39-40, 42-44, 43-59, 45-62, 46-62, 47-48, 47-72, 48-49, 49-50, 51-52, 52-53, 53-54, 54-72, 55-56, 55-58, 56-57, 59-67, 59-78, 60-61, 62-74, 63-73, 64-71, 65-66, 65-73, 68-69, 69-78, 70-71"
+  ]
+}
