@@ -1,14 +1,39 @@
 import { useState } from 'react'
 import { getLocationLabel, landmarkOptions, podOptions, selectableLocations } from './data/locationOptions'
-import { findWrittenRoute, resolveRoomId } from './data/writtenRoutes'
+import { findDirections, formatSeconds } from './data/routeDirections'
+import type { Directions } from './data/routeDirections'
+import { resolveRoomId } from './data/writtenRoutes'
 import './App.css'
 
 type Location = { landmark: string; room: string }
 
+function getLocationId(location: Location) {
+  return location.landmark || resolveRoomId(location.room) || ''
+}
+
 function getLocationName(location: Location) {
-  const id = location.landmark || resolveRoomId(location.room)
+  const id = getLocationId(location)
   return selectableLocations.find((landmark) => landmark.id === id)?.displayName
     || location.room.trim()
+}
+
+function unavailableMessage(
+  directions: Exclude<Directions, { status: 'found' }>,
+  from: { id: string; name: string },
+  to: { id: string; name: string },
+) {
+  switch (directions.status) {
+    case 'same-place':
+      return 'Your starting point and destination are the same place.'
+    case 'not-mapped': {
+      const names = [from, to].filter(({ id }) => directions.locationIds.includes(id)).map(({ name }) => name)
+      return `${names.join(' and ')} ${names.length > 1 ? 'have' : 'has'} not been added to the map yet, so directions can't be generated.`
+    }
+    case 'no-route':
+      return `No recorded connections join ${from.name} and ${to.name} yet.`
+    case 'unknown-location':
+      return 'We could not find one of those rooms. Check the room number, e.g. W-302.'
+  }
 }
 
 function LocationField({
@@ -109,10 +134,9 @@ function App() {
   const [submitted, setSubmitted] = useState(false)
   const from = getLocationName(startingPoint)
   const to = getLocationName(destination)
-  const route = findWrittenRoute(
-    startingPoint.landmark || resolveRoomId(startingPoint.room) || '',
-    destination.landmark || resolveRoomId(destination.room) || '',
-  )
+  const fromId = getLocationId(startingPoint)
+  const toId = getLocationId(destination)
+  const directions = findDirections(fromId, toId)
 
   return (
     <main className="homepage">
@@ -133,7 +157,7 @@ function App() {
       <section className="navigation-panel" aria-labelledby="panel-title">
         <h2 id="panel-title">Plan your journey</h2>
         <p className="route-hint">
-          First route available: W-301 → W-302, floor 3.
+          Directions are generated for any two mapped locations.
         </p>
 
         <form
@@ -172,26 +196,32 @@ function App() {
 
         {submitted && (
           <div className="journey-summary" role="status">
-            <h3>{route ? 'Your directions' : 'Route unavailable'}</h3>
+            <h3>{directions.status === 'found' ? 'Your directions' : 'Route unavailable'}</h3>
             <p><strong>From:</strong> {from}</p>
             <p><strong>To:</strong> {to}</p>
-            {route ? (
-              <ol className="direction-steps">
-                {route.connections.map((connection) => (
-                  <li key={`${connection.from}-${connection.to}`}>{connection.direction}</li>
-                ))}
-              </ol>
+            {directions.status === 'found' ? (
+              <>
+                <ol className="direction-steps">
+                  {directions.steps.map((step, index) => (
+                    <li key={index}>{step}</li>
+                  ))}
+                </ol>
+                {directions.totalSeconds !== undefined && (
+                  <p>
+                    <strong>Total walking time:</strong> about {formatSeconds(directions.totalSeconds)}
+                    {directions.usesEstimate && ' (some legs are not timed yet, so this is an estimate)'}
+                  </p>
+                )}
+              </>
             ) : (
-              <p>
-                Directions are not available for this route yet. Try W-301 → W-302.
-              </p>
+              <p>{unavailableMessage(directions, { id: fromId, name: from }, { id: toId, name: to })}</p>
             )}
           </div>
         )}
       </section>
 
       <footer className="site-footer">
-        <p>School Nav prototype · First route: W-301 → W-302</p>
+        <p>School Nav prototype · Routes generated from the school map</p>
       </footer>
     </main>
   )
