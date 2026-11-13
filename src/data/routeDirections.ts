@@ -1,12 +1,13 @@
-import { findRoute, schoolLocations } from './schoolLocations'
-import type { Route } from './schoolLocations'
+import { schoolLocations, unresolvedLocations } from './schoolLocations'
 import { findWrittenRoute } from './writtenRoutes'
+import type { WrittenRouteOptions } from './writtenRoutes'
 
 export type Directions =
   | {
       status: 'found'
-      /** 'written' = hand-written route; 'graph' = generated from schoolGraph.json. */
-      source: 'written' | 'graph'
+      source: 'connections'
+      verification: 'approved' | 'proposed'
+      connectionIds: string[]
       steps: string[]
       /** Absent for written routes, which have no confirmed timings. */
       totalSeconds?: number
@@ -20,8 +21,6 @@ export type Directions =
   | { status: 'no-route' }
   | { status: 'unknown-location' }
 
-const locationsById = new Map(schoolLocations.map((location) => [location.id, location]))
-
 /** Locations that exist in the imported graph and can therefore be routed. */
 export const routableLocationIds = new Set(
   schoolLocations.filter(({ nodeNumber }) => nodeNumber !== undefined).map(({ id }) => id),
@@ -34,49 +33,24 @@ export function formatSeconds(seconds: number) {
   return `${Math.floor(rounded / 60)}m ${String(rounded % 60).padStart(2, '0')}s`
 }
 
-function nameOf(id: string) {
-  return locationsById.get(id)?.displayName ?? id
-}
-
-// Leg wording stays generic: the graph does not confirm doorways, stairs or sides.
-function describeGraphRoute(route: Route) {
-  return route.edges.map((edge, index) => {
-    const from = nameOf(route.path[index])
-    const to = nameOf(route.path[index + 1])
-    const time = `about ${formatSeconds(edge.walkSeconds)}${edge.measured ? '' : ', estimated'}`
-    const verb = edge.kind === 'outdoor' ? 'Head outside' : 'Walk'
-    return `${verb} from ${from} to ${to} (${time}).`
-  })
-}
-
-/**
- * Directions for any pair of locations. A hand-written route wins when one
- * exists; otherwise the quickest route is generated from the school graph.
- */
-export function findDirections(fromId: string, toId: string): Directions {
-  if (!fromId || !toId) return { status: 'unknown-location' }
+/** Calculate directions from validated, ordered, directed connection records. */
+export function findDirections(fromId: string, toId: string, options: WrittenRouteOptions = {}): Directions {
+  const knownIds = new Set([...schoolLocations, ...unresolvedLocations].map(({ id }) => id))
+  if (!knownIds.has(fromId) || !knownIds.has(toId)) return { status: 'unknown-location' }
   if (fromId === toId) return { status: 'same-place' }
 
-  const written = findWrittenRoute(fromId, toId)
-  if (written) {
+  const route = findWrittenRoute(fromId, toId, options)
+  if (route) {
+    const timed = route.verification === 'approved'
+      && route.connections.every(({ durationSeconds }) => durationSeconds !== undefined)
     return {
-      status: 'found',
-      source: 'written',
-      steps: written.connections.map(({ direction }) => direction),
+      status: 'found', source: 'connections', verification: route.verification,
+      connectionIds: route.connections.map(({ id }) => id),
+      steps: route.connections.map(({ direction }) => direction!),
+      ...(timed ? { totalSeconds: route.connections.reduce((sum, c) => sum + c.durationSeconds!, 0) } : {}),
       usesEstimate: false,
     }
   }
-
   const unmapped = [fromId, toId].filter((id) => !routableLocationIds.has(id))
-  if (unmapped.length) return { status: 'not-mapped', locationIds: unmapped }
-
-  const route = findRoute(fromId, toId)
-  if (!route) return { status: 'no-route' }
-  return {
-    status: 'found',
-    source: 'graph',
-    steps: describeGraphRoute(route),
-    totalSeconds: route.totalSeconds,
-    usesEstimate: route.usesUnmeasuredEdge,
-  }
+  return unmapped.length ? { status: 'not-mapped', locationIds: unmapped } : { status: 'no-route' }
 }

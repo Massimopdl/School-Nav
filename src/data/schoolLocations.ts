@@ -23,6 +23,24 @@ export const schoolBuildings = [
 
 export type BuildingId = (typeof schoolBuildings)[number]['id']
 
+// Floor-plan sections. Room identifications point here instead of copying URLs.
+export const schoolFloorMaps = {
+  'level-1': {
+    floor: 1, displayName: 'Level 1',
+    sourceUrl: 'https://drive.google.com/file/d/1IlFglT17CqxA5jYXM0midve29hfqrUzd/view',
+  },
+  'level-2': {
+    floor: 2, displayName: 'Level 2',
+    sourceUrl: 'https://drive.google.com/file/d/1NWXdgFLTNw6WbBkt9wP-h5hrIQmBGRb6/view',
+  },
+  'level-3': {
+    floor: 3, displayName: 'Level 3',
+    sourceUrl: 'https://drive.google.com/file/d/18sSNY1nIqKt6OZBw7VbXyrYsmKZXZzG2/view',
+  },
+} as const
+
+export type FloorMapId = keyof typeof schoolFloorMaps
+
 // Subjects share pods; a pod's colour does not identify a single subject.
 // Room prefixes are included only where confirmed.
 export const schoolPods = [
@@ -107,6 +125,12 @@ export interface SchoolLocation {
   floor?: number
   /** Add only confirmed room numbers, e.g. W-302; omit when unknown. */
   roomNumber?: string
+  /** Links a room to the floor plan; this does not confirm doors or routes. */
+  mapReference?: {
+    mapId: FloorMapId
+    positionDescription: string
+    roomIdentityConfirmed: boolean
+  }
 }
 
 // Floors are unknown for every node without a `floor` field.
@@ -139,10 +163,26 @@ export const schoolLocations: readonly SchoolLocation[] = [
   { id: 'loudon-entrance', nodeNumber: 26, displayName: 'Loudon Entrance', type: 'entrance', buildingId: 'main-school' },
 
   // Confirmed level-3 White Pod rooms. W-305 has not been confirmed.
-  { id: 'w-301', nodeNumber: 47, displayName: 'W-301', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-301', podId: 'white', category: 'science' },
+  {
+    id: 'w-301', nodeNumber: 47, displayName: 'W-301', type: 'classroom',
+    buildingId: 'main-school', floor: 3, roomNumber: 'W-301', podId: 'white', category: 'science',
+    mapReference: {
+      mapId: 'level-3',
+      positionDescription: 'Level 3: upper-right room of the central science cluster, immediately left of the Red Staircase in the supplied map. Room identified by the user.',
+      roomIdentityConfirmed: true,
+    },
+  },
   { id: 'w-302', nodeNumber: 48, displayName: 'W-302', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-302', podId: 'white', category: 'science' },
   { id: 'w-303', nodeNumber: 49, displayName: 'W-303', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-303', podId: 'white', category: 'science' },
-  { id: 'w-304', nodeNumber: 50, displayName: 'Computer Science Room', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-304', podId: 'white', category: 'computer-science' },
+  {
+    id: 'w-304', nodeNumber: 50, displayName: 'Computer Science Room', type: 'classroom',
+    buildingId: 'main-school', floor: 3, roomNumber: 'W-304', podId: 'white', category: 'computer-science',
+    mapReference: {
+      mapId: 'level-3',
+      positionDescription: 'Level 3: rectangular room at the lower-right of the central science cluster, immediately right of Learning Commons in the supplied map. Room identified by the user from the surrounding-area and close-up screenshots.',
+      roomIdentityConfirmed: true,
+    },
+  },
   { id: 'w-306', nodeNumber: 51, displayName: 'W-306', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-306', podId: 'white', category: 'science' },
   { id: 'w-307', nodeNumber: 52, displayName: 'W-307', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-307', podId: 'white', category: 'science' },
   { id: 'w-308', nodeNumber: 53, displayName: 'W-308', type: 'classroom', buildingId: 'main-school', floor: 3, roomNumber: 'W-308', podId: 'white', category: 'science' },
@@ -267,6 +307,16 @@ export const schoolLocations: readonly SchoolLocation[] = [
   { id: 'waverly-playground', nodeNumber: 44, displayName: 'Waverly Playground (Eagle)', type: 'playground', buildingId: 'main-school', floor: 1 },
   { id: 'ls-mini-playground', nodeNumber: 78, displayName: 'LS Mini Playground (Marlborough)', type: 'playground', buildingId: 'main-school' },
 ]
+
+// Each section derives its room links from the catalogue: no duplicate rooms.
+// A known floor alone does not identify a room's position on a drawing.
+export const floorMapSections = Object.entries(schoolFloorMaps).map(([mapId, map]) => ({
+  id: mapId as FloorMapId,
+  ...map,
+  identifiedLocations: schoolLocations.filter((location) =>
+    location.floor === map.floor && location.mapReference?.mapId === mapId
+    && location.mapReference.roomIdentityConfirmed),
+}))
 
 // Locations with known levels but unconfirmed graph nodes stay here until
 // their mappings are confirmed. Do not infer connections from their levels.
@@ -406,9 +456,37 @@ function buildAdjacency(options: RouteOptions = {}) {
 
 /** Dijkstra on walkSeconds. Returns null when no route exists. */
 export function findRoute(fromId: string, toId: string, options: RouteOptions = {}): Route | null {
+  if (!locationsById.has(fromId) || !locationsById.has(toId)) return null
   const adjacency = buildAdjacency(options)
+  const result = findConnectionPath(fromId, toId,
+    [...adjacency.values()].flatMap((neighbors) => neighbors.map(({ edge, to }) => ({
+      from: edge.from === to ? edge.to : edge.from, to, edge,
+    }))), (leg) => leg.edge.walkSeconds)
+  if (!result) return null
+  const edges = result.connections.map(({ edge }) => edge)
+  return {
+    path: result.path, edges, totalSeconds: result.cost,
+    usesUnmeasuredEdge: edges.some((edge) => !edge.measured),
+  }
+}
+
+/** Shared Dijkstra search. Directed records retain their identity and order.
+ * Default cost counts connections; it is not a duration or measurement.
+ */
+export function findConnectionPath<T extends { from: string; to: string }>(
+  fromId: string,
+  toId: string,
+  connections: readonly T[],
+  costOf: (connection: T) => number = () => 1,
+): { path: string[]; connections: T[]; cost: number } | null {
+  const adjacency = new Map<string, T[]>()
+  for (const connection of connections) {
+    const neighbors = adjacency.get(connection.from) ?? []
+    neighbors.push(connection)
+    adjacency.set(connection.from, neighbors)
+  }
   const distance = new Map<string, number>([[fromId, 0]])
-  const previous = new Map<string, { from: string; edge: SchoolEdge }>()
+  const previous = new Map<string, T>()
   const visited = new Set<string>()
 
   while (true) {
@@ -420,26 +498,26 @@ export function findRoute(fromId: string, toId: string, options: RouteOptions = 
     if (current === toId) break
     visited.add(current)
 
-    for (const { to, edge } of adjacency.get(current) ?? []) {
-      const seconds = distance.get(current)! + edge.walkSeconds
+    for (const connection of adjacency.get(current) ?? []) {
+      const to = connection.to
+      const seconds = distance.get(current)! + costOf(connection)
       if (seconds < (distance.get(to) ?? Infinity)) {
         distance.set(to, seconds)
-        previous.set(to, { from: current, edge })
+        previous.set(to, connection)
       }
     }
   }
 
   const path = [toId]
-  const edges: SchoolEdge[] = []
+  const edges: T[] = []
   for (let step = previous.get(toId); step; step = previous.get(step.from)) {
     path.unshift(step.from)
-    edges.unshift(step.edge)
+    edges.unshift(step)
   }
   return {
     path,
-    edges,
-    totalSeconds: distance.get(toId)!,
-    usesUnmeasuredEdge: edges.some((edge) => !edge.measured),
+    connections: edges,
+    cost: distance.get(toId)!,
   }
 }
 

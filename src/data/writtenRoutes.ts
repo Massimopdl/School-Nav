@@ -1,4 +1,4 @@
-import { schoolLocations } from './schoolLocations'
+import { findConnectionPath, schoolEdges, schoolLocations } from './schoolLocations'
 import type { SchoolEdgeKind, SchoolLocation } from './schoolLocations'
 
 /** One directed connection between destinations or internal navigation points. */
@@ -131,8 +131,8 @@ export function validateWrittenConnections(
 // Imported graph estimates, units and conflicting samples remain in schoolGraph.json
 // and the legacy SchoolEdge model; they are not confirmed navigation measurements.
 
-// Preserve the existing one-way prototype and wording. Source adjacency and
-// matching floors do not confirm its physical sequence or written instruction.
+// Retain the original record grouping for compatibility, not route lookup.
+// Source adjacency does not confirm physical travel or passage type.
 export const firstWrittenRoute = {
   from: 'w-301',
   to: 'w-302',
@@ -141,7 +141,7 @@ export const firstWrittenRoute = {
       id: 'w-301-to-w-302',
       from: 'w-301',
       to: 'w-302',
-      direction: 'Leave W-301 and follow the hallway to W-302 on the same floor. Enter W-302.',
+      direction: 'Proposed segment: W-301 → W-302. Verify the corridor path; passing W-302 does not mean entering it.',
       connectivityReviewed: false,
       instructionReviewed: false,
       sourceReference: 'schoolGraph.json: nodes 47 and 48',
@@ -150,10 +150,52 @@ export const firstWrittenRoute = {
   ] satisfies readonly WrittenConnection[],
 } as const
 
-export function findWrittenRoute(fromId: string, toId: string) {
-  return fromId === firstWrittenRoute.from && toId === firstWrittenRoute.to
-    ? firstWrittenRoute
-    : null
+// Small instruction overlay on existing JSON edges. No new physical adjacency
+// or timing is asserted. Additional journeys come from adding reviewed records.
+export const writtenConnections: readonly WrittenConnection[] = [
+  ...firstWrittenRoute.connections,
+  {
+    id: 'w-302-to-w-303', from: 'w-302', to: 'w-303',
+    direction: 'Proposed segment: W-302 → W-303. Verify the corridor path and destination doorway.',
+    connectivityReviewed: false, instructionReviewed: false,
+    sourceReference: 'schoolGraph.json: nodes 48 and 49',
+    reviewNote: 'Listed graph adjacency only; physical travel, passage type and wording await confirmation.',
+  },
+]
+
+export interface WrittenRouteOptions {
+  /** Explicit development preview only; pending records never become approved. */
+  allowProposed?: boolean
+  connections?: readonly WrittenConnection[]
+}
+
+export function findWrittenRoute(fromId: string, toId: string, options: WrittenRouteOptions = {}) {
+  if (!schoolLocations.some(({ id }) => id === fromId)
+    || !schoolLocations.some(({ id }) => id === toId) || fromId === toId) return null
+  const eligible = validateWrittenConnections(options.connections ?? writtenConnections).filter((result) => {
+    if (result.status === 'invalid' || (result.status === 'pending' && !options.allowProposed)) return false
+    const connection = result.connection
+    if (!connection.direction?.trim()) return false
+    const from = schoolLocations.find(({ id }) => id === connection.from)!
+    const to = schoolLocations.find(({ id }) => id === connection.to)!
+    // Unknown/unfinished floor transitions cannot masquerade as complete routes.
+    if (from.floor === undefined || to.floor === undefined) return false
+    if (from.floor !== to.floor && (result.status !== 'ready'
+      || (connection.kind !== 'stairs' && connection.kind !== 'ramp'))) return false
+    // Proposed segments must have supporting raw adjacency, not invented links.
+    return result.status === 'ready' || schoolEdges.some((edge) =>
+      (edge.from === from.id && edge.to === to.id) || (edge.from === to.id && edge.to === from.id))
+  })
+  // Prefer a wholly approved route even when previewing proposed data.
+  const ready = eligible.filter(({ status }) => status === 'ready').map(({ connection }) => connection)
+  const route = findConnectionPath(fromId, toId, ready)
+    ?? (options.allowProposed ? findConnectionPath(fromId, toId, eligible.map(({ connection }) => connection)) : null)
+  if (!route) return null
+  return {
+    from: fromId, to: toId, path: route.path, connections: route.connections,
+    verification: route.connections.every((connection) => ready.includes(connection))
+      ? 'approved' as const : 'proposed' as const,
+  }
 }
 
 /** Match the existing stable ID whether selected or entered as a room number. */

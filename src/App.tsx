@@ -30,7 +30,7 @@ function unavailableMessage(
       return `${names.join(' and ')} ${names.length > 1 ? 'have' : 'has'} not been added to the map yet, so directions can't be generated.`
     }
     case 'no-route':
-      return `No recorded connections join ${from.name} and ${to.name} yet.`
+      return `Navigation between ${from.name} and ${to.name} is not yet available through complete, reviewed connections.`
     case 'unknown-location':
       return 'We could not find one of those rooms. Check the room number, e.g. W-302.'
   }
@@ -132,11 +132,12 @@ function App() {
   const [startingPoint, setStartingPoint] = useState<Location>({ landmark: '', room: '' })
   const [destination, setDestination] = useState<Location>({ landmark: '', room: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [previewProposed, setPreviewProposed] = useState(false)
   const from = getLocationName(startingPoint)
   const to = getLocationName(destination)
   const fromId = getLocationId(startingPoint)
   const toId = getLocationId(destination)
-  const directions = findDirections(fromId, toId)
+  const directions = findDirections(fromId, toId, { allowProposed: import.meta.env.DEV && previewProposed })
 
   return (
     <main className="homepage">
@@ -157,7 +158,7 @@ function App() {
       <section className="navigation-panel" aria-labelledby="panel-title">
         <h2 id="panel-title">Plan your journey</h2>
         <p className="route-hint">
-          Directions are generated for any two mapped locations.
+          Supported navigation uses reviewed connections. Unreviewed journeys remain unavailable.
         </p>
 
         <form
@@ -166,6 +167,15 @@ function App() {
             if (from && to) setSubmitted(true)
           }}
         >
+          {import.meta.env.DEV && (
+            <label className="preview-option">
+              <input type="checkbox" checked={previewProposed} onChange={(event) => {
+                setPreviewProposed(event.target.checked)
+                setSubmitted(false)
+              }} />
+              Show proposed routes — unverified, for development testing only
+            </label>
+          )}
           <LocationField
             id="starting-point"
             label="Where are you starting?"
@@ -196,11 +206,18 @@ function App() {
 
         {submitted && (
           <div className="journey-summary" role="status">
-            <h3>{directions.status === 'found' ? 'Your directions' : 'Route unavailable'}</h3>
+            <h3>{directions.status === 'found'
+              ? directions.verification === 'proposed' ? 'Proposed route — NOT verified' : 'Your directions'
+              : 'Route unavailable'}</h3>
             <p><strong>From:</strong> {from}</p>
             <p><strong>To:</strong> {to}</p>
             {directions.status === 'found' ? (
               <>
+                {directions.verification === 'proposed' && (
+                  <p>This is a graph-backed proposal, not confirmed navigation. Verify the corridor path,
+                    passage types and instructions before following it. Intermediate rooms are checkpoints,
+                    not instructions to enter classrooms.</p>
+                )}
                 <ol className="direction-steps">
                   {directions.steps.map((step, index) => (
                     <li key={index}>{step}</li>
@@ -221,7 +238,7 @@ function App() {
       </section>
 
       <footer className="site-footer">
-        <p>School Nav prototype · Routes generated from the school map</p>
+        <p>School Nav prototype · Routes calculated from connection data</p>
       </footer>
     </main>
   )
