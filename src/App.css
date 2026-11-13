@@ -73,6 +73,20 @@
   line-height: 1.5;
 }
 
+.preview-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.preview-option input {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
 .direction-steps {
   margin: 20px 0 0;
   padding-left: 24px;

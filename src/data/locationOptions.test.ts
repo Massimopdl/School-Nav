@@ -39,7 +39,8 @@ test('named classrooms display their room number and retain routing IDs', () => 
   assert.equal(getLocationLabel(whitePod.locations.find(({ id }) => id === 'w-304')!), 'W-304 — Computer Science Room')
   const from = whitePod.locations.find(({ id }) => id === 'w-301')!.id
   const to = whitePod.locations.find(({ id }) => id === 'w-302')!.id
-  assert.ok(findWrittenRoute(from, to))
+  assert.equal(findWrittenRoute(from, to), null)
+  assert.ok(findWrittenRoute(from, to, { allowProposed: true }))
   assert.equal(resolveRoomId(' W-301 '), from)
   assert.equal(resolveRoomId('w-302'), to)
   assert.equal(findWrittenRoute(to, from), null)
